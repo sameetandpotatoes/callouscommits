@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "request": "v2.53.0",
+    "express": "3.5.1",
     "node-twitterbot": "0.2.2"
   }
 }
