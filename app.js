@@ -23,7 +23,7 @@ var options = {
 
 var bot = new TwitterBot(settings.twitterAccess);
 
-var yes_words = ['fuck', 'shit', 'crap', 'damn', 'bitch'];
+var yes_words = ['fuck', 'shit', ' crap ', 'damn', 'bitch'];
 
 var no_words = ['merge', 'branch'];
 
