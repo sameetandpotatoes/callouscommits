@@ -1,0 +1,10 @@
+{
+  "name": "callouscommits",
+  "description": "Callous Commits",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "request": "v2.53.0",
+    "node-twitterbot": "0.2.2"
+  }
+}
