@@ -6,3 +6,9 @@ exports.twitterAccess = {
 };
 
 exports.githubToken = "fb681a3920a27a257066fcbf1043512d3f59b275";
+
+exports.screenName = "callouscommits";
+
+exports.yesWords = ['fuck', 'shit', ' crap ', 'damn', 'bitch'];
+
+exports.noWords = ['merge', 'branch', 'master'];

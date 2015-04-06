@@ -9,7 +9,7 @@ app.listen(port, function() {
 });
 
 var headers = {
-  "User-Agent": "callouscommits",
+  "User-Agent": settings.screenName,
   "ETag": "a18c3bded88eb5dbb5c849a489412bf3"
 };
 
@@ -22,11 +22,8 @@ var options = {
 };
 
 var bot = new TwitterBot(settings.twitterAccess);
-
-var yes_words = ['fuck', 'shit', ' crap ', 'damn', 'bitch'];
-
-var no_words = ['merge', 'branch'];
-
+var yes_words = settings.yesWords;
+var no_words = settings.noWords;
 var last_tweets_queue = [];
 
 function checkCommit(message) {
@@ -54,7 +51,7 @@ function parse_github_results(err, res, body) {
           bot.tweet(tweet);
           console.log("Tweeted: " + tweet);
           last_tweets_queue.push(tweet);
-          if (last_tweets_queue.length > 10){
+          if (last_tweets_queue.length > 50){
             last_tweets_queue.shift();
           }
         } else{ //Already in there, try again
