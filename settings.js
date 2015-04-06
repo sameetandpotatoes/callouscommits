@@ -5,7 +5,7 @@ exports.twitterAccess = {
   "access_token_secret": 'dUqCkEINoTN7NTjey5iDmkTK9METXEMTPm39n0VCX806s'
 };
 
-exports.githubToken = "8fa6b4e6414aefa7ce07e2c605d2b45e9c0a5568";
+exports.githubToken = "79d32196246bd88ab5e7eb88bf3c71459d3eddc3";
 
 exports.screenName = "callouscommits";
 
