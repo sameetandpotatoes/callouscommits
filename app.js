@@ -17,9 +17,9 @@ var headers = {
 var options = {
   "url": "https://api.github.com/events",
   "headers": headers,
+  //With GitHub token, I have almost 5000 API requests at a time, which is more than enough
   "auth": {
     "username": settings.githubToken + ":x-oauth-basic"
-    //With GitHub auth, I have almost 5000 API requests at a time, which is more than enough
   }
 };
 
