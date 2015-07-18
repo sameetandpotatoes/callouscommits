@@ -3,29 +3,9 @@ Installation
 
 1. Clone this repository
 2. `touch settings.js`
-3. Open up settings.js, copy the below template, and fill in with your Twitter developer credentials.
-4. `npm install`.
-
-
-> exports.twitterAccess = {
-
->  "consumer_key": '',
-
->  "consumer_secret": '',
-
-> "access_token": '',
-
-> "access_token_secret": ''
-
-> };
-
-> exports.githubToken = "";
-
-> exports.screenName = "";
-
-> exports.yes_words = ["word1", "word2"];
-
-> exports.no_words = ["merge", "branch", "master"];
+3. Open up settings.js and fill in with all of your credentials. You need a Twitter account to generate your consumer key, secret, access token, and access token secret.
+4. (Optional): You could also get a GitHub token for more api requests. You don't have to do, though, because the api used to retrieve these commits doesn't require a GitHub token, but it is recommended to get a higher rate limit.
+4. `npm install` and `node app.js`.
 
 Configuration
 ============
@@ -34,6 +14,6 @@ Configuration
 - This bot does post fairly frequently, so you can change that with the setTimeout method in the
 `parse_github_results` method
 
-URL
+URL (Example)
 =========
 http://www.twitter.com/callouscommits
