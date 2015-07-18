@@ -32,11 +32,18 @@ var last_tweets_queue = [];
 
 //Determines whether the @param message is actually funny
 //Returns true if funny, false otherwise
-function checkCommit(message) {
+function isFunny(message) {
   var yesPattern = new RegExp(yes_words.join("|"));
   var noPattern = new RegExp(no_words.join("|"));
   return message.length < 125 &&
   yesPattern.test(message.toLowerCase()) && !noPattern.test(message.toLowerCase());
+}
+//Given an api url, the function extacts the user name from the url, and formats it
+//into a publicly accessible link to their GitHub profile
+function extractNameFromUrl(url){
+  var remove_head = url.split("https://api.github.com/repos/")[1];
+  var user_name = remove_head.split("/")[0];
+  return "http://www.github.com/"+user_name;
 }
 
 function parse_github_results(err, res, body) {
@@ -46,16 +53,20 @@ function parse_github_results(err, res, body) {
         .filter(function (e) { return e.type === "PushEvent" })
         .map(function (e) {
           return e.payload.commits.filter(function (f) {
-            return checkCommit(f.message);
+            return isFunny(f.message);
           })
         }).filter(function (e) { return e.length > 0; }));
       for (i in r) {
+        var url = r[i].url;
+        var url_user_name = extractNameFromUrl(url);
         var commit = r[i].message;
         var owner = r[i].author.name;
-        var tweet = commit + " ~ " + owner;
-        //Checks queue of previous tweets before tweeting this one
-        //This allows for multiple tweets by same owner (consecutively)
-        //But doesn't post the same tweet again
+        var tweet = commit + " ~ " + owner + " ~ " + url_user_name;
+        /*
+          Checks queue of previous tweets before tweeting this one
+          This allows for multiple tweets by same owner (consecutively)
+          But doesn't post the same tweet again
+        */
         if (last_tweets_queue.indexOf(tweet) < 0){
           bot.tweet(tweet);
           console.log("Tweeted: " + tweet);
@@ -65,7 +76,7 @@ function parse_github_results(err, res, body) {
             last_tweets_queue.shift();
           }
         } else{ //Already posted
-
+          console.log("I found the same tweet, so not posting it again");
         }
       }
     }
